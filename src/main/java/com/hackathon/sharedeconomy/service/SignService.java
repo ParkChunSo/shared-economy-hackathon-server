@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 @Service
-public class LoginService {
+public class SignService {
     private LoginRepository loginRepository;
 
-    public LoginService(LoginRepository loginRepository) {
+    public SignService(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
     }
 
@@ -42,10 +42,10 @@ public class LoginService {
     }
 
 
-    /*public SignupDto update(SignupDto dto) {
+    /*public SignupDto update(SignupDto dtos) {
         User user = new User();
-        if (loginRepository.findById(dto.getId()).isPresent())
-            user = loginRepository.save(dto.toEntity());
+        if (loginRepository.findById(dtos.getId()).isPresent())
+            user = loginRepository.save(dtos.toEntity());
         return SignupDto.builder()
                 .id(user.getId())
                 .pw(user.getPw())

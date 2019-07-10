@@ -1,4 +1,4 @@
-package com.hackathon.sharedeconomy.model.dto;
+package com.hackathon.sharedeconomy.model.dtos;
 
 import lombok.AccessLevel;
 import lombok.Builder;

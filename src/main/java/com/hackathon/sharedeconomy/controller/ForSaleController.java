@@ -1,6 +1,6 @@
 package com.hackathon.sharedeconomy.controller;
 
-import com.hackathon.sharedeconomy.model.dto.ForSaleDto;
+import com.hackathon.sharedeconomy.model.dtos.ForSaleDto;
 import com.hackathon.sharedeconomy.service.ForSaleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

@@ -1,4 +1,4 @@
-package com.hackathon.sharedeconomy.model.dto;
+package com.hackathon.sharedeconomy.model.dtos;
 
 import com.hackathon.sharedeconomy.model.entity.User;
 import com.hackathon.sharedeconomy.model.enums.RoleType;

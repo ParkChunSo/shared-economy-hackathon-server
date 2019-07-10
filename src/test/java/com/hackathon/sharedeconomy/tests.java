@@ -1,9 +1,8 @@
 package com.hackathon.sharedeconomy;
 
 import com.hackathon.sharedeconomy.service.ForSaleService;
-import com.hackathon.sharedeconomy.service.LoginService;
+import com.hackathon.sharedeconomy.service.SignService;
 import com.hackathon.sharedeconomy.service.ShoppingService;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +16,7 @@ public class tests {
     private ForSaleService forSaleService;
 
     @Autowired
-    private LoginService loginService;
+    private SignService signService;
 
     @Autowired
     private ShoppingService shoppingService;

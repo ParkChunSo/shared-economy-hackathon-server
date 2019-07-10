@@ -1,8 +1,8 @@
 package com.hackathon.sharedeconomy.controller;
 
-import com.hackathon.sharedeconomy.model.dto.UserDto;
+import com.hackathon.sharedeconomy.model.dtos.UserDto;
 import com.hackathon.sharedeconomy.model.entity.User;
-import com.hackathon.sharedeconomy.service.LoginService;
+import com.hackathon.sharedeconomy.service.SignService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -13,28 +13,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Api(description = "회원관련 API")
 @RestController
-@RequestMapping(value = "/shared")
-public class LoginController {
+@RequestMapping(value = "/hanzipgachi/sign")
+public class SIgnController {
 
-    private LoginService loginService;
+    private SignService signService;
 
-    public LoginController(LoginService loginService) {
-        this.loginService = loginService;
+    public SIgnController(SignService signService) {
+        this.signService = signService;
     }
 
     @ApiOperation(value = "로그인")
     @ApiImplicitParam(name = "loginDto", dataType = "LoginDto")
-    @PostMapping("/login")
-    public User login(@RequestBody UserDto.Login loginDto){
-        return loginService.login(loginDto.toEntity());
+    @PostMapping("/signin")
+    public User signIn(@RequestBody UserDto.Login loginDto){
+        return signService.login(loginDto.toEntity());
     }
 
 
     @ApiOperation(value = "회원가입")
     @ApiImplicitParam(name = "signupDto", dataType = "SignupDto")
     @PostMapping("/signup")
-    public User signup(@RequestBody UserDto.SingUp signupDto){
-        return loginService.signup(signupDto.toEntity());
+    public User signUp(@RequestBody UserDto.SingUp signupDto){
+        return signService.signup(signupDto.toEntity());
     }
 
 

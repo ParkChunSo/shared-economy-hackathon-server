@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class AspectException {
     private Logger logger = LoggerFactory.getLogger(AspectException.class);
 
-    @Pointcut("execution(* com.hackathon.sharedeconomy.service.LoginService.login(..))")
+    @Pointcut("execution(* com.hackathon.sharedeconomy.service.SignService.login(..))")
     public void login() {
     }
 

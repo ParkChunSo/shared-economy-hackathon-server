@@ -6,7 +6,7 @@ package com.hackathon.sharedeconomy.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.hackathon.sharedeconomy.model.dto.ForSaleDto;
+import com.hackathon.sharedeconomy.model.dtos.ForSaleDto;
 import com.hackathon.sharedeconomy.model.enums.SaleType;
 import lombok.AccessLevel;
 import lombok.Builder;

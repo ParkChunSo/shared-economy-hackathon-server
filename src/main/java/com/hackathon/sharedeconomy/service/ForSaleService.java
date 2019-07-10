@@ -1,7 +1,7 @@
 package com.hackathon.sharedeconomy.service;
 
 import com.hackathon.sharedeconomy.exception.UserDefineException;
-import com.hackathon.sharedeconomy.model.dto.ForSaleDto;
+import com.hackathon.sharedeconomy.model.dtos.ForSaleDto;
 import com.hackathon.sharedeconomy.model.entity.ForSale;
 import com.hackathon.sharedeconomy.model.entity.Image;
 import com.hackathon.sharedeconomy.model.entity.User;
@@ -21,12 +21,12 @@ import java.util.List;
 public class ForSaleService {
 
     private ForSaleRepository forSaleRepository;
-    private LoginService loginService;
+    private SignService signService;
     private ImageService imageService;
 
-    public ForSaleService(ForSaleRepository forSaleRepository, LoginService loginService, ImageService imageService) {
+    public ForSaleService(ForSaleRepository forSaleRepository, SignService signService, ImageService imageService) {
         this.forSaleRepository = forSaleRepository;
-        this.loginService = loginService;
+        this.signService = signService;
         this.imageService = imageService;
     }
 
@@ -53,7 +53,7 @@ public class ForSaleService {
             throw new UserDefineException("해당 유저의 매물이 등록되어 있습니다.");
         }
 
-        User user = loginService.findById(saveDto.getUserId());
+        User user = signService.findById(saveDto.getUserId());
         List<String> imageList = saveDto.getImagePath();
         List<Image> images = new ArrayList<>();
 

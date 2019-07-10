@@ -5,7 +5,9 @@ package com.hackathon.sharedeconomy.model.enums;
  */
 
 public enum RoleType {
-    OLD("노인"), YOUNG("청년");
+    ADMIN("관리자"),
+    OLD("노인"),
+    YOUNG("청년");
 
     private String roleExplain;
 
@@ -20,8 +22,9 @@ public enum RoleType {
     public static RoleType convertRoleType(String role) {
         if (role.equals(OLD.getRoleExplain())) {
             return OLD;
-        } else {
+        } else if(role.matches(YOUNG.getRoleExplain())) {
             return YOUNG;
         }
+        return ADMIN;
     }
 }
