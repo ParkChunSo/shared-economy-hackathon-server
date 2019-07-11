@@ -9,7 +9,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @Slf4j
 public class AuthenticationInterceptHandler extends HandlerInterceptorAdapter {
@@ -29,12 +28,6 @@ public class AuthenticationInterceptHandler extends HandlerInterceptorAdapter {
             response.getWriter().write("Expired or invalid JWT token");
             return false;
         }
-//        catch (AuthenticationException e){
-//            log.error("User not found");
-//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//            response.getWriter().write("User not found");
-//            return false;
-//        }
         return true;
     }
 }

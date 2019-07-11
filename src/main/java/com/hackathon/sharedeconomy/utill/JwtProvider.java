@@ -41,7 +41,6 @@ public class JwtProvider {
 
     // bearer 토큰 불러오기
     public static String resolveToken(HttpServletRequest req) {
-        ServletRequest request;
         String bearerToken = req.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
@@ -57,7 +56,7 @@ public class JwtProvider {
     }
 
     // 사용자 아이디
-    public static String getUserEmailByToken(String bearerToken) {
+    public static String getUserIdByToken(String bearerToken) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(resolveToken(bearerToken)).getBody().getSubject();
     }
 

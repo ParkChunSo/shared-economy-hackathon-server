@@ -11,7 +11,7 @@ import java.util.Arrays;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     private String[] patternArr = {
-            "/sign",
+            "/sign/admin/*",
             ""
     };
 
