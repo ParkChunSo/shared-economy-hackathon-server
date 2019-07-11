@@ -5,7 +5,11 @@ package com.hackathon.sharedeconomy.model.enums;
  */
 
 public enum SaleType {
-    SALE("판매중"), COMPLETE("판매완료");
+    WAIT("대기중"),
+    SALE("판매중"),
+    PROCESSING("처리중"),
+    COMPLETE("판매완료")
+    ;
 
     private String saleExplain;
 
@@ -18,10 +22,18 @@ public enum SaleType {
     }
 
     public static SaleType convertSaleType(String role) {
-        if (role.equals(SALE.getSaleExplain())) {
+        if (role.matches(WAIT.getSaleExplain())){
+            return WAIT;
+        }
+        else if (role.matches(SALE.getSaleExplain())) {
             return SALE;
-        } else {
+        }
+        else if(role.matches(PROCESSING.getSaleExplain())) {
+            return PROCESSING;
+        }
+        else if(role.matches(COMPLETE.getSaleExplain())){
             return COMPLETE;
         }
+        return null;
     }
 }
