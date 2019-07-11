@@ -38,7 +38,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         logger.info("======================================");
 
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("Explanation", "RealEstate Service");
+        httpHeaders.set("Explanation", "HanZipGaChi Service");
 
         return new ResponseEntity<>(ErrorDto.builder()
                 .originalErrorMessage(e.getOriginalErrorMessage())
@@ -62,13 +62,36 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         logger.info("======================================");
 
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("Explanation", "RealEstate Service");
+        httpHeaders.set("Explanation", "HanZipGaChi Service");
 
         return new ResponseEntity<>(ErrorDto.builder()
                 .originalErrorMessage(e.toString())
                 .errorMessage("예상치 못한 예외 발생")
                 .requestURL(requestURL)
                 .build(), httpHeaders, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity handleAuthenticationException(HttpServletRequest request, AuthenticationException e){
+        String requestURL = urlPathHelper.getOriginatingRequestUri(request);
+
+        logger.info("======================================");
+        logger.info("======= 권한 없는 사용자 접근 ========");
+        logger.info("======================================");
+        logger.info("예외 발생 시간 : " + LocalDateTime.now());
+        logger.info("요청 HTTP 메소드 : " + request.getMethod());
+        logger.info("요청 URL : " + requestURL);
+        logger.info("클라이언트 : " + request.getRemoteHost());
+        logger.info("======================================");
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Explanation", "HanZipGaChi Service");
+
+        return new ResponseEntity<>(ErrorDto.builder()
+                .originalErrorMessage(e.toString())
+                .errorMessage("접근 권한이 없습니다.")
+                .requestURL(requestURL)
+                .build(), httpHeaders, HttpStatus.UNAUTHORIZED);
     }
 
 }

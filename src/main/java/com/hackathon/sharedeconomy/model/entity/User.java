@@ -7,14 +7,15 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user_tbl")
-@Getter
+@Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
-    @Id
+    @Id @Setter(AccessLevel.NONE)
     private String id;
 
     private String pw;
@@ -29,10 +30,12 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
+    @Setter(AccessLevel.NONE)
     private List<ForSale> forSales = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
+    @Setter(AccessLevel.NONE)
     private List<Shopping> shoppings = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
