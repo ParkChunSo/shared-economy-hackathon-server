@@ -20,6 +20,7 @@ public class SignService {
         this.loginRepository = loginRepository;
     }
 
+    // 로그인
     public String signIn(SignInRequest request) {
         User user = findById(request.getId());
 
@@ -30,7 +31,8 @@ public class SignService {
         }
     }
 
-    public void signup(SignUpRequest request) {
+    // 회원가입
+    public void signUp(SignUpRequest request) {
         if(IsAlreadyUsed(request.getId())) {
             throw new UserDefineException("아이디 중복입니다.");
         }
@@ -38,22 +40,7 @@ public class SignService {
         loginRepository.save(request.toEntity());
     }
 
-//    public SignupDto update(SignupDto dtos) {
-//        User user = new User();
-//        if (loginRepository.findById(dtos.getId()).isPresent())
-//            user = loginRepository.save(dtos.toEntity());
-//        return SignupDto.builder()
-//                .id(user.getId())
-//                .pw(user.getPw())
-//                .name(user.getName())
-//                .phoneNumber(user.getPhoneNumber())
-//                .role(user.getgetRole())
-//                .build();
-//    }
-
-    /**
-     * 회원정보 변경
-     */
+    // 회원정보 수정
     public void updateInfo(String jwt, SignUpdateRequest requestdto) {
         User user = findById(
                 JwtProvider.getUserIdByToken(
@@ -61,19 +48,18 @@ public class SignService {
                 )
         );
 
-        user.setPw(requestdto.getPw());
-        user.setName(requestdto.getName());
-        user.setAddress(requestdto.getAddress());
-        user.setAge(requestdto.getAge());
-        user.setPhoneNumber(requestdto.getPhoneNumber());
-        user.setRole(RoleType.convertRoleType(requestdto.getRole()));
-
-        loginRepository.save(user);
+        loginRepository.save(
+                user.updateUserInfo(
+                        requestdto.getPw(),
+                        requestdto.getName(),
+                        requestdto.getPhoneNumber(),
+                        requestdto.getAddress(),
+                        requestdto.getAge(),
+                        RoleType.convertRoleType(requestdto.getRole()))
+        );
     }
 
-    /**
-     * Jwt를 이용한 회원정보 조회
-     */
+    // Jwt를 이용한 회원정보 조회
     public UserDetailResponse getUserInfo(String jwt) {
         User user = findById(
                 JwtProvider.getUserIdByToken(
@@ -90,6 +76,7 @@ public class SignService {
                 .build();
     }
 
+    // (관리자) 회원정보 조회
     public UserDetailResponse getUserInfoForAdmin(String id){
         User user = findById(id);
         return UserDetailResponse.builder()
@@ -102,15 +89,7 @@ public class SignService {
                 .build();
     }
 
-    public User findById(String userId) {
-        return loginRepository.findById(userId)
-                .orElseThrow(() -> new UserDefineException("해당 아이디를 찾을 수 없습니다."));
-    }
-
-    private Boolean IsAlreadyUsed(String userId) {
-        return !ObjectUtils.isEmpty(loginRepository.findById(userId));
-    }
-
+    // (관리자) 회원정보 리스트 조회
     public List<UserListResponse> getUserInfoList() {
         List<UserListResponse> dtoList = new ArrayList<>();
         List<User> userList = loginRepository.findAll();
@@ -127,5 +106,14 @@ public class SignService {
             );
         }
         return dtoList;
+    }
+
+    public User findById(String userId) {
+        return loginRepository.findById(userId)
+                .orElseThrow(() -> new UserDefineException("해당 아이디를 찾을 수 없습니다."));
+    }
+
+    private Boolean IsAlreadyUsed(String userId) {
+        return !ObjectUtils.isEmpty(loginRepository.findById(userId));
     }
 }
