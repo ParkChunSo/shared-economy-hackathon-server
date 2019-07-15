@@ -1,6 +1,6 @@
 package com.hackathon.sharedeconomy.model.dtos;
 
-import com.hackathon.sharedeconomy.model.entity.ForSale;
+import com.hackathon.sharedeconomy.model.entity.Goods;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,14 +31,14 @@ public class ForSaleDto {
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Response {
-        private ForSale forSale;
+        private Goods goods;
         private String userId;
         private String phoneNumber;
         private String address;
 
         @Builder
-        public Response(ForSale forSale, String userId, String phoneNumber, String address) {
-            this.forSale = forSale;
+        public Response(Goods goods, String userId, String phoneNumber, String address) {
+            this.goods = goods;
             this.userId = userId;
             this.phoneNumber = phoneNumber;
             this.address = address;

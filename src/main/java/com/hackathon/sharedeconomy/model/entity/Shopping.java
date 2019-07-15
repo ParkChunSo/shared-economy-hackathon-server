@@ -25,11 +25,11 @@ public class Shopping {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
-    private ForSale forSale;
+    private Goods goods;
 
     @Builder
-    public Shopping(User user, ForSale forSale) {
+    public Shopping(User user, Goods goods) {
         this.user = user;
-        this.forSale = forSale;
+        this.goods = goods;
     }
 }

@@ -23,12 +23,12 @@ public class Image {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference
-    private ForSale forSale;
+    private Goods goods;
 
     @Builder
-    public Image(String path, ForSale forSale) {
+    public Image(String path, Goods goods) {
         this.path = path;
-        this.forSale = forSale;
+        this.goods = goods;
     }
 
     public void updatePath(String path) {

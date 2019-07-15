@@ -1,7 +1,7 @@
 package com.hackathon.sharedeconomy.repository.impl;
 
 import com.hackathon.sharedeconomy.model.dtos.ForSaleDto;
-import com.hackathon.sharedeconomy.model.entity.ForSale;
+import com.hackathon.sharedeconomy.model.entity.Goods;
 import com.hackathon.sharedeconomy.model.entity.QUser;
 import com.hackathon.sharedeconomy.model.entity.User;
 import com.hackathon.sharedeconomy.model.enums.SaleType;
@@ -30,7 +30,7 @@ public class ForSaleRepositoryImpl extends QuerydslRepositorySupport implements 
     private SignService signService;
 
     public ForSaleRepositoryImpl(JPAQueryFactory queryFactory, SignService signService) {
-        super(ForSale.class);
+        super(Goods.class);
         this.queryFactory = queryFactory;
         this.signService = signService;
     }
@@ -50,7 +50,7 @@ public class ForSaleRepositoryImpl extends QuerydslRepositorySupport implements 
         }
 
         User loginUser = signService.findById(userId);
-        return user.address.eq(loginUser.getAddress());
+        return user.address.eq(loginUser.getResidence());
     }
 
     private BooleanExpression likeSearchAddress(String address) {

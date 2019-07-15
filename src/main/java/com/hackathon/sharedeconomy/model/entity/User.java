@@ -40,7 +40,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
-    private List<ForSale> forSales = new ArrayList<>();
+    private List<Goods> goods = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
@@ -50,7 +50,7 @@ public class User {
     private RoleType role;
 
     @Builder
-    public User(String id, String pw, String name, String phoneNumber, String residence, String city, String gu, String dong, Integer age, List<ForSale> forSales, List<Shopping> shoppings, RoleType role) {
+    public User(String id, String pw, String name, String phoneNumber, String residence, String city, String gu, String dong, Integer age, List<Goods> goods, List<Shopping> shoppings, RoleType role) {
         this.id = id;
         this.pw = pw;
         this.name = name;
@@ -60,7 +60,7 @@ public class User {
         this.gu = gu;
         this.dong = dong;
         this.age = age;
-        this.forSales = forSales;
+        this.goods = goods;
         this.shoppings = shoppings;
         this.role = role;
     }

@@ -1,6 +1,6 @@
 package com.hackathon.sharedeconomy;
 
-import com.hackathon.sharedeconomy.service.ForSaleService;
+import com.hackathon.sharedeconomy.service.GoodsService;
 import com.hackathon.sharedeconomy.service.SignService;
 import com.hackathon.sharedeconomy.service.ShoppingService;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class tests {
 
     @Autowired
-    private ForSaleService forSaleService;
+    private GoodsService goodsService;
 
     @Autowired
     private SignService signService;
@@ -25,7 +25,7 @@ public class tests {
     public void saveForSale() {
         String userId = "testid3";
         User user = loginService.findById(userId);
-        System.out.println(user.getAddress());
+        System.out.println(user.getResidence());
 
         List<String> imgs = new ArrayList<>();
         imgs.add("img1");
@@ -64,12 +64,12 @@ public class tests {
                 .build();*//*
 
 
-        forSaleService.getForSaleResponseDtos(forSaleRequestDto);
+        forSaleService.getGoodsByUserInfo(forSaleRequestDto);
     }*/
 
     /*@Test
     public void findByNameAndUserId() {
-        ForSale forSale = forSaleService.findByNameAndUserId("매물", "testid");
+        Goods forSale = forSaleService.findByNameAndUserId("매물", "testid");
         System.out.println(forSale.getUser().getId());
     }*/
 

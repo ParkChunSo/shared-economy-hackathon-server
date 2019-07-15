@@ -14,17 +14,17 @@ public class ShoppingService {
 
     private ShoppingRepository shoppingRepository;
     private SignService signService;
-    private ForSaleService forSaleService;
+    private GoodsService goodsService;
 
-    public ShoppingService(ShoppingRepository shoppingRepository, SignService signService, ForSaleService forSaleService) {
+    public ShoppingService(ShoppingRepository shoppingRepository, SignService signService, GoodsService goodsService) {
         this.shoppingRepository = shoppingRepository;
         this.signService = signService;
-        this.forSaleService = forSaleService;
+        this.goodsService = goodsService;
     }
 
     public void saveShopping(ShoppingDto.Save saveDto) {
         Shopping shopping = Shopping.builder()
-                .forSale(forSaleService.findByUserId(saveDto.getForSaleUserId()))
+                .goods(goodsService.findByUserId(saveDto.getForSaleUserId()))
                 .user(signService.findById(saveDto.getUserId()))
                 .build();
 

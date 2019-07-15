@@ -2,7 +2,7 @@ package com.hackathon.sharedeconomy.interceptor;
 
 import com.hackathon.sharedeconomy.exception.AuthenticationException;
 import com.hackathon.sharedeconomy.model.enums.RoleType;
-import com.hackathon.sharedeconomy.utill.JwtProvider;
+import com.hackathon.sharedeconomy.utill.JwtUtils;
 import io.jsonwebtoken.JwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -16,9 +16,9 @@ public class AuthenticationInterceptHandler extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("================== 토큰 검사 실행 ==================");
         try {
-            String token = JwtProvider.resolveToken(request);
-            if (token != null && JwtProvider.validateToken(token)) {
-                RoleType roles = JwtProvider.getUserRoleByToken(token);
+            String token = JwtUtils.resolveToken(request);
+            if (token != null && JwtUtils.validateToken(token)) {
+                RoleType roles = JwtUtils.getUserRoleByToken(token);
                 if(!roles.equals(RoleType.ADMIN))
                     throw new AuthenticationException("해당 요청은 관리자만 가능합니다.");
             }

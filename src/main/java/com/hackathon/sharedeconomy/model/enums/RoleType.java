@@ -7,7 +7,8 @@ package com.hackathon.sharedeconomy.model.enums;
 public enum RoleType {
     ADMIN("관리자"),
     OLD("노인"),
-    YOUNG("청년");
+    YOUNG("청년")
+    ;
 
     private String roleExplain;
 

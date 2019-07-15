@@ -1,4 +1,4 @@
-package com.hackathon.sharedeconomy.model.dtos.forsale;
+package com.hackathon.sharedeconomy.model.dtos.goods;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class GoodsRequest {
-    private String id;
-    private String pw;
+    private String title;
+    private String seller;
 }
