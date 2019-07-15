@@ -32,7 +32,7 @@ public class SIgnController {
     @ApiImplicitParam(name = "SignUpRequest", dataType = "SignUpRequest")
     @PostMapping("/signup")
     public void signUp(@RequestBody SignUpRequest requestDto){
-        signService.signup(requestDto);
+        signService.signUp(requestDto);
     }
 
     @ApiOperation(value = "회원정보 상세조회(일반 회원)")
@@ -58,13 +58,4 @@ public class SIgnController {
     public List<UserListResponse> getUserInfoList(){
         return signService.getUserInfoList();
     }
-
-    /*@ApiOperation(value = "회원정보 수정")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "signupDto", dataType = "SignupDto"),
-    })
-    @PostMapping("/update")
-    public SignupDto update(@RequestBody SignupDto signupDto){
-        return loginService.update(signupDto);
-    }*/
 }

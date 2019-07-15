@@ -3,20 +3,13 @@ package com.hackathon.sharedeconomy.utill;
 import com.hackathon.sharedeconomy.model.enums.RoleType;
 import io.jsonwebtoken.*;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.Base64;
+import java.util.Date;
 
-//@Component
-public class JwtProvider {
+public class JwtUtils {
     private static final long validityInMilliseconds = 360000000; // 테스트 중이라 100시간으로 설정.
     private static String secretKey = Base64.getEncoder().encodeToString("PCS".getBytes());
-
-
-//    @PostConstruct
-//    protected void init() {
-//        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
-//    }
 
     public static String createToken(String username, RoleType role) {
         Claims claims = Jwts.claims().setSubject(username);
