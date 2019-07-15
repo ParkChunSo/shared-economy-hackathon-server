@@ -15,7 +15,10 @@ public class SignUpRequest {
     private String pw;
     private String name;
     private String phoneNumber;
-    private String address;
+    private String residence;
+    private String city;
+    private String gu;
+    private String dong;
     private Integer age;
 
     @ApiModelProperty(notes = "노인 또는 청년으로 보내야 한다.")
@@ -27,7 +30,10 @@ public class SignUpRequest {
                 .pw(pw)
                 .name(name)
                 .phoneNumber(phoneNumber)
-                .address(address)
+                .residence(residence)
+                .city(city)
+                .gu(gu)
+                .dong(dong)
                 .age(age)
                 .role(RoleType.convertRoleType(role))
                 .build();

@@ -5,7 +5,7 @@ import com.hackathon.sharedeconomy.model.dtos.sign.*;
 import com.hackathon.sharedeconomy.model.entity.User;
 import com.hackathon.sharedeconomy.model.enums.RoleType;
 import com.hackathon.sharedeconomy.repository.LoginRepository;
-import com.hackathon.sharedeconomy.utill.JwtProvider;
+import com.hackathon.sharedeconomy.utill.JwtUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -25,7 +25,7 @@ public class SignService {
         User user = findById(request.getId());
 
         if (request.getPw().equals(user.getPw())) {
-            return JwtProvider.createToken(user.getId(), user.getRole());
+            return JwtUtils.createToken(user.getId(), user.getRole());
         } else {
             throw new UserDefineException(request.getId() + "의 비밀번호가 잘못 되었습니다.");
         }
@@ -43,8 +43,8 @@ public class SignService {
     // 회원정보 수정
     public void updateInfo(String jwt, SignUpdateRequest requestdto) {
         User user = findById(
-                JwtProvider.getUserIdByToken(
-                        JwtProvider.resolveToken(jwt)
+                JwtUtils.getUserIdByToken(
+                        JwtUtils.resolveToken(jwt)
                 )
         );
 
@@ -62,14 +62,14 @@ public class SignService {
     // Jwt를 이용한 회원정보 조회
     public UserDetailResponse getUserInfo(String jwt) {
         User user = findById(
-                JwtProvider.getUserIdByToken(
-                        JwtProvider.resolveToken(jwt)   // Bearer 뒤에 토큰 받기
+                JwtUtils.getUserIdByToken(
+                        JwtUtils.resolveToken(jwt)   // Bearer 뒤에 토큰 받기
                 )
         );
         return UserDetailResponse.builder()
                 .id(user.getId())
                 .name(user.getName())
-                .address(user.getAddress())
+                .address(user.getResidence())
                 .age(user.getAge())
                 .phoneNumber(user.getPhoneNumber())
                 .role(user.getRole())
@@ -82,7 +82,7 @@ public class SignService {
         return UserDetailResponse.builder()
                 .id(user.getId())
                 .name(user.getName())
-                .address(user.getAddress())
+                .address(user.getResidence())
                 .age(user.getAge())
                 .phoneNumber(user.getPhoneNumber())
                 .role(user.getRole())
@@ -99,7 +99,7 @@ public class SignService {
                     UserListResponse.builder()
                             .id(user.getId())
                             .name(user.getName())
-                            .address(user.getAddress())
+                            .address(user.getResidence())
                             .age(user.getAge())
                             .role(user.getRole().name())
                             .build()
